@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Solution {
+    
+    public static int max(int a, int b)
+    {
+          return (a > b) ? a : b;
+    }
+ 
+	public static int maxProfit(ArrayList<Integer> values, ArrayList<Integer> weights, int n, int w) {
+		// Write your code here.
+        int dp[][]=new int[n+1][w+1];
+       for(int i=0;i<n+1;i++)
+       {
+           for(int j=0;j<w+1;j++)
+           {
+      		 if(i==0 ||j==0)
+      		 {
+        	   dp[i][j]=0;
+      		 }
+       		 else if(weights.get(i-1)<=j)
+        	{
+            dp[i][j]=max(values.get(i-1)+dp[i-1][j-weights.get(i-1)],dp[i-1][j]);
+      		  }
+       		 else if(weights.get(i-1)>j)
+       		 {
+            dp[i][j]=dp[i-1][j];
+        		}
+           }
+       }
+        return dp[n][w];
+	}
+}
