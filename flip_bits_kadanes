@@ -1,0 +1,32 @@
+public class Solution {
+	public static int flipBits(int[] arr,int n) {
+        //Write your code here
+        int inone=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]==1)
+            {
+                inone++;
+            }
+        }
+   	    int x=0,ans=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]==1)
+            {
+                arr[i]=-1;
+            }
+            else
+            {
+                arr[i]=1;
+            }
+        }
+        
+        for(int i=0;i<arr.length;i++)
+        {
+            x=Math.max(0,x+arr[i]);
+            ans=Math.max(x,ans);
+        }
+        return (inone+ans);
+	}
+}
