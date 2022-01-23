@@ -1,0 +1,40 @@
+import java.util.*;
+public class Solution {
+	
+	public static long maxSubarraySum(int[] arr, int n) {
+		// write your code here
+        long csum=arr[0];
+        long osum=arr[0];
+        int c=0;
+        if(arr[0]<0)
+        {
+            c++;
+        }
+        for(int i=1;i<arr.length;i++)
+        {
+            if(arr[i]<0)
+            {
+                c++;
+            }
+            if(csum>=0)
+            {
+                csum+=arr[i];
+            }
+            else
+            {
+                csum=arr[i];
+            }
+            if(csum>osum)
+            {
+                osum=csum;
+            }
+           
+        }
+         if(c==n)
+         {
+             return 0;
+         }
+       return osum;
+	}
+
+}
