@@ -1,0 +1,43 @@
+
+public class Solution {
+
+	public static long countWaysToMakeChange(int denominations[], int value){
+        //write your code here		
+        
+        long t[][]=new long[denominations.length+1][value+1];
+        
+        for(int i=0;i<denominations.length+1;i++)
+        {
+            for(int j=0;j<value+1;j++)
+            {
+                if(i==0)
+                {
+                    t[i][j]=0;
+                }
+                if(j==0)
+                {
+                    t[i][j]=1;
+                }
+                    
+            }
+        }
+        
+        for(int i=1;i<denominations.length+1;i++)
+        {
+            for(int j=1;j<value+1;j++)
+            {
+                if(denominations[i-1]<=j)
+                {
+                    t[i][j]=t[i-1][j]+t[i][j-denominations[i-1]];
+                }
+                else
+                {
+                    t[i][j]=t[i-1][j];
+                }
+            }
+        }
+        return t[denominations.length][value];
+
+	}
+	
+}
